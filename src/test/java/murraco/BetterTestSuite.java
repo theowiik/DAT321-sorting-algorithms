@@ -39,6 +39,16 @@ public final class BetterTestSuite {
   }
 
   @Test
+  public void shouldThrowNullArray() {
+    Assert.assertThrows(Exception.class, () -> BubbleSort.bubbleSort(null));
+    Assert.assertThrows(Exception.class, () -> Heapsort.heapSort(null));
+    Assert.assertThrows(Exception.class, () -> MergeSort.mergeSort(null));
+    Assert.assertThrows(Exception.class, () -> SelectionSort.selectionSort(null));
+    Assert.assertThrows(Exception.class, () -> Quicksort.quickSort(null));
+    Assert.assertThrows(Exception.class, () -> InsertionSort.insertionSort(null));
+  }
+
+  @Test
   public void shouldSortEmptyArray_v1() {
     for (TestUtils.SorterWrapper sorter : TestUtils.buildSorters()) {
       String[] array = {};
@@ -66,16 +76,5 @@ public final class BetterTestSuite {
   private void perform(Performer performer) {
 
   }
-
-  @Test
-  public void shouldThrowNullArray() {
-    Assert.assertThrows(Exception.class, () -> BubbleSort.bubbleSort(null));
-    Assert.assertThrows(Exception.class, () -> Heapsort.heapSort(null));
-    Assert.assertThrows(Exception.class, () -> MergeSort.mergeSort(null));
-    Assert.assertThrows(Exception.class, () -> SelectionSort.selectionSort(null));
-    Assert.assertThrows(Exception.class, () -> Quicksort.quickSort(null));
-    Assert.assertThrows(Exception.class, () -> InsertionSort.insertionSort(null));
-  }
-
 
 }
