@@ -3,6 +3,10 @@ package murraco;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 
 public final class BetterTestSuite {
@@ -73,6 +77,65 @@ public final class BetterTestSuite {
     Integer[] mergeArray = new Integer[]{1};
     MergeSort.mergeSort(mergeArray);
     assertEquals(new Integer[]{1}, mergeArray);
+  }
+
+  @Test
+  public void shouldSortAlreadySortedArray() {
+    Integer[] original = new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
+    Integer[] bubbleArray = original.clone();
+    BubbleSort.bubbleSort(bubbleArray);
+    assertEquals(original, bubbleArray);
+
+    Integer[] heapArray = original.clone();
+    Heapsort.heapSort(heapArray);
+    assertEquals(original, heapArray);
+
+    Integer[] selectionArray = original.clone();
+    SelectionSort.selectionSort(selectionArray);
+    assertEquals(original, selectionArray);
+
+    Integer[] quickArray = original.clone();
+    Quicksort.quickSort(quickArray);
+    assertEquals(original, quickArray);
+
+    Integer[] insertionArray = original.clone();
+    InsertionSort.insertionSort(insertionArray);
+    assertEquals(original, insertionArray);
+
+    Integer[] mergeArray = original.clone();
+    MergeSort.mergeSort(mergeArray);
+    assertEquals(original, mergeArray);
+  }
+
+  @Test
+  public void shouldSortReversedArray() {
+    Integer[] original = new Integer[]{10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+    Integer[] correctSort = new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
+    Integer[] bubbleArray = original.clone();
+    BubbleSort.bubbleSort(bubbleArray);
+    assertEquals(correctSort, bubbleArray);
+
+    Integer[] heapArray = original.clone();
+    Heapsort.heapSort(heapArray);
+    assertEquals(correctSort, heapArray);
+
+    Integer[] selectionArray = original.clone();
+    SelectionSort.selectionSort(selectionArray);
+    assertEquals(correctSort, selectionArray);
+
+    Integer[] quickArray = original.clone();
+    Quicksort.quickSort(quickArray);
+    assertEquals(correctSort, quickArray);
+
+    Integer[] insertionArray = original.clone();
+    InsertionSort.insertionSort(insertionArray);
+    assertEquals(correctSort, insertionArray);
+
+    Integer[] mergeArray = original.clone();
+    MergeSort.mergeSort(mergeArray);
+    assertEquals(correctSort, mergeArray);
   }
 
   @Test
@@ -176,5 +239,17 @@ public final class BetterTestSuite {
 
     Integer[] mergeArray = new Integer[]{6, 3, 5, 1, 3, 5, null};
     Assert.assertThrows(Exception.class, () -> MergeSort.mergeSort(mergeArray));
+  }
+
+  @Test
+  public void shouldSortLongArrayInTime() {
+    int size = 100_000;
+    Integer[] original = new Integer[size];
+    for (int i = 0; i < size; i++) {
+      original[i] = (int) (Math.random() * 1_000_000);
+    }
+
+    List<Integer> sorted = new ArrayList<>(Arrays.asList(original));
+    sorted.sort(Integer::compareTo);
   }
 }
