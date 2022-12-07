@@ -71,6 +71,65 @@ public final class BetterTestSuite {
   }
 
   @Test
+  public void shouldSortArrayWithMultipleElements() {
+    String[] original = {"C", "J", "A", "F", "I", "E", "H", "D", "B", "G"};
+    String[] correctSort = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
+
+    String[] bubbleArray = original.clone();
+    BubbleSort.bubbleSort(bubbleArray);
+    assertEquals(correctSort, bubbleArray);
+
+    String[] heapArray = original.clone();
+    Heapsort.heapSort(heapArray);
+    assertEquals(correctSort, heapArray);
+
+    String[] selectionArray = original.clone();
+    SelectionSort.selectionSort(selectionArray);
+    assertEquals(correctSort, selectionArray);
+
+    String[] quickArray = original.clone();
+    Quicksort.quickSort(quickArray);
+    assertEquals(correctSort, quickArray);
+
+    String[] insertionArray = original.clone();
+    InsertionSort.insertionSort(insertionArray);
+    assertEquals(correctSort, insertionArray);
+
+    Integer[] mergeArray = new Integer[]{2, 5, 7, 6, 1, 3, 4, 10, 9, 8};
+    MergeSort.mergeSort(mergeArray);
+    assertEquals(new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, mergeArray);
+  }
+
+  @Test
+  public void shouldSortEmptyArray() {
+    String[] original = {};
+
+    String[] bubbleArray = original.clone();
+    BubbleSort.bubbleSort(bubbleArray);
+    assertEquals(0, bubbleArray.length);
+
+    String[] heapArray = original.clone();
+    Heapsort.heapSort(heapArray);
+    assertEquals(0, heapArray.length);
+
+    String[] selectionArray = original.clone();
+    SelectionSort.selectionSort(selectionArray);
+    assertEquals(0, selectionArray.length);
+
+    String[] quickArray = original.clone();
+    Quicksort.quickSort(quickArray);
+    assertEquals(0, quickArray.length);
+
+    String[] insertionArray = original.clone();
+    InsertionSort.insertionSort(insertionArray);
+    assertEquals(0, insertionArray.length);
+
+    Integer[] mergeArray = new Integer[]{};
+    MergeSort.mergeSort(mergeArray);
+    assertEquals(0, mergeArray.length);
+  }
+
+  @Test
   public void shouldSortEmptyArray_dynamicVersion() {
     for (TestUtils.SorterWrapper sorter : TestUtils.buildSorters()) {
       String[] array = {};
@@ -85,7 +144,7 @@ public final class BetterTestSuite {
   }
 
   @Test
-  public void x() {
+  public void x_test() {
     Performer p = new Performer() {
       @Override
       public void perform() {
