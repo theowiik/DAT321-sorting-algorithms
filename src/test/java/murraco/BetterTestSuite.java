@@ -37,20 +37,6 @@ public final class BetterTestSuite {
   }
 
   @Test
-  public void shouldSortArrayOneElement_dynamicVersion() {
-    for (TestUtils.SorterWrapper sorter : TestUtils.buildSorters()) {
-      String[] array = {"A"};
-      String[] copy = array.clone();
-      sorter.sort(copy);
-      assertEquals("Sorter " + sorter.getSorterName() + " should be the same", array, copy);
-    }
-
-    Integer[] mergeArray = new Integer[]{1};
-    MergeSort.mergeSort(mergeArray);
-    assertEquals(new Integer[]{1}, mergeArray);
-  }
-
-  @Test
   public void shouldSortArrayWithDuplicates() {
     String[] original = {"C", "X", "B", "E", "A", "K", "A"};
     String[] sorted = {"A", "A", "B", "C", "E", "K", "X"};
@@ -88,16 +74,6 @@ public final class BetterTestSuite {
     Assert.assertThrows(Exception.class, () -> SelectionSort.selectionSort(null));
     Assert.assertThrows(Exception.class, () -> Quicksort.quickSort(null));
     Assert.assertThrows(Exception.class, () -> InsertionSort.insertionSort(null));
-  }
-
-  @Test
-  public void shouldThrowNullArray_dynamicVersion() {
-    for (TestUtils.SorterWrapper sorter : TestUtils.buildSorters()) {
-      String message = "Sorter " + sorter.getSorterName() + " should throw exception";
-      Assert.assertThrows(message, Exception.class, () -> sorter.sort(null));
-    }
-
-    Assert.assertThrows(Exception.class, () -> MergeSort.mergeSort(null));
   }
 
   @Test
@@ -158,35 +134,4 @@ public final class BetterTestSuite {
     MergeSort.mergeSort(mergeArray);
     assertEquals(0, mergeArray.length);
   }
-
-  @Test
-  public void shouldSortEmptyArray_dynamicVersion() {
-    for (TestUtils.SorterWrapper sorter : TestUtils.buildSorters()) {
-      String[] array = {};
-      sorter.sort(array);
-      assertEquals(0, array.length);
-    }
-  }
-
-
-  private interface Performer {
-    void perform();
-  }
-
-  @Test
-  public void x_test() {
-    Performer p = new Performer() {
-      @Override
-      public void perform() {
-        String[] array = {};
-        // Sort
-        assertEquals(0, array.length);
-      }
-    };
-  }
-
-  private void perform(Performer performer) {
-
-  }
-
 }
