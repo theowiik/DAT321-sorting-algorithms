@@ -3,35 +3,72 @@ package murraco;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Arrays;
-
 import static org.junit.Assert.assertEquals;
 
 public final class BetterTestSuite {
 
   @Test
-  public void oneElement() {
+  public void oneElementShouldBeSorted() {
     String[] original = {"A"};
-    String[] shouldBeSorted = original.clone();
-    BubbleSort.bubbleSort(shouldBeSorted);
 
-    assertEquals(original, shouldBeSorted);
+    String[] bubbleArray = original.clone();
+    BubbleSort.bubbleSort(bubbleArray);
+    assertEquals(original, bubbleArray);
+
+    String[] heapArray = original.clone();
+    Heapsort.heapSort(heapArray);
+    assertEquals(original, heapArray);
+
+    String[] selectionArray = original.clone();
+    SelectionSort.selectionSort(selectionArray);
+    assertEquals(original, selectionArray);
+
+    String[] quickArray = original.clone();
+    Quicksort.quickSort(quickArray);
+    assertEquals(original, quickArray);
+
+    String[] insertionArray = original.clone();
+    InsertionSort.insertionSort(insertionArray);
+    assertEquals(original, insertionArray);
+
+    // Custom
+
+    Integer[] mergeArray = new Integer[]{1};
+    MergeSort.mergeSort(mergeArray);
+    assertEquals(new Integer[]{1}, mergeArray);
   }
 
   @Test
-  public void nully_overkill() {
-    Iterable<SorterWrapper> sorters = buildSorters();
-
-    for (SorterWrapper sorter : sorters) {
-      // sorter.sort(null);
-      // Assert.assertThrows("Sorter: ", Exception.class, () -> sorter.sort(null));
+  public void shouldSortEmptyArray_v1() {
+    for (TestUtils.SorterWrapper sorter : TestUtils.buildSorters()) {
+      String[] array = {};
+      sorter.sort(array);
+      assertEquals(0, array.length);
     }
+  }
 
-    Assert.assertThrows(Exception.class, () -> BubbleSort.bubbleSort(null));
+  private interface Performer {
+    void perform();
   }
 
   @Test
-  public void nully_normal() {
+  public void x() {
+    Performer p = new Performer() {
+      @Override
+      public void perform() {
+        String[] array = {};
+        // Sort
+        assertEquals(0, array.length);
+      }
+    };
+  }
+
+  private void perform(Performer performer) {
+
+  }
+
+  @Test
+  public void shouldThrowNullArray() {
     Assert.assertThrows(Exception.class, () -> BubbleSort.bubbleSort(null));
     Assert.assertThrows(Exception.class, () -> Heapsort.heapSort(null));
     Assert.assertThrows(Exception.class, () -> MergeSort.mergeSort(null));
@@ -40,37 +77,5 @@ public final class BetterTestSuite {
     Assert.assertThrows(Exception.class, () -> InsertionSort.insertionSort(null));
   }
 
-  private interface SorterWrapper {
-    <T extends Comparable<T>> void sort(T[] t);
-  }
 
-  private Iterable<SorterWrapper> buildSorters() {
-    SorterWrapper bubble = BubbleSort::bubbleSort;
-    SorterWrapper heap = Heapsort::heapSort;
-    SorterWrapper insertion = new SorterWrapper() {
-      @Override
-      public <T extends Comparable<T>> void sort(T[] t) {
-
-      }
-    };
-
-//    SorterWrapper merge = new SorterWrapper() {
-//      @Override
-//      public <T extends Comparable<T>> void sort(T[] t) {
-//        MergeSort.mergeSort(t);
-//      }
-//    };
-
-    SorterWrapper selection = SelectionSort::selectionSort;
-
-    SorterWrapper quick = new SorterWrapper() {
-      @Override
-      public <T extends Comparable<T>> void sort(T[] t) {
-        Quicksort.quickSort(t);
-      }
-    };
-
-    SorterWrapper[] wrappers = new SorterWrapper[]{bubble, heap, insertion, selection, quick};
-    return Arrays.asList(wrappers);
-  }
 }
