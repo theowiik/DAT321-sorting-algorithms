@@ -75,9 +75,8 @@ public final class BetterTestSuite {
     assertEquals(new Integer[]{1}, mergeArray);
   }
 
-
   @Test
-  public void shouldSortArrayWithMultipleElements() {
+  public void shouldSortStringArrayWithMultipleElements() {
     String[] original = {"C", "J", "A", "F", "I", "E", "H", "D", "B", "G"};
     String[] correctSort = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
 
@@ -102,6 +101,36 @@ public final class BetterTestSuite {
     assertEquals(correctSort, insertionArray);
 
     Integer[] mergeArray = new Integer[]{2, 5, 7, 6, 1, 3, 4, 10, 9, 8};
+    MergeSort.mergeSort(mergeArray);
+    assertEquals(new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, mergeArray);
+  }
+
+  @Test
+  public void shouldSortIntegerArrayWithMultipleElements() {
+    Integer[] original = new Integer[]{2, 5, 7, 6, 1, 3, 4, 10, 9, 8};
+    Integer[] correctSort = new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
+    Integer[] bubbleArray = original.clone();
+    BubbleSort.bubbleSort(bubbleArray);
+    assertEquals(correctSort, bubbleArray);
+
+    Integer[] heapArray = original.clone();
+    Heapsort.heapSort(heapArray);
+    assertEquals(correctSort, heapArray);
+
+    Integer[] selectionArray = original.clone();
+    SelectionSort.selectionSort(selectionArray);
+    assertEquals(correctSort, selectionArray);
+
+    Integer[] quickArray = original.clone();
+    Quicksort.quickSort(quickArray);
+    assertEquals(correctSort, quickArray);
+
+    Integer[] insertionArray = original.clone();
+    InsertionSort.insertionSort(insertionArray);
+    assertEquals(correctSort, insertionArray);
+
+    Integer[] mergeArray = original.clone();
     MergeSort.mergeSort(mergeArray);
     assertEquals(new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, mergeArray);
   }
