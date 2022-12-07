@@ -135,4 +135,17 @@ public final class BetterTestSuite {
     MergeSort.mergeSort(mergeArray);
     assertEquals(new Integer[]{1, 3, 3, 5, 5, 6}, mergeArray);
   }
+
+  @Test
+  public void shouldThrowArrayContainsNull() {
+    String[] original = {"C", "X", "B", "E", "A", "K", null};
+    Assert.assertThrows(Exception.class, () -> BubbleSort.bubbleSort(original));
+    Assert.assertThrows(Exception.class, () -> Heapsort.heapSort(original));
+    Assert.assertThrows(Exception.class, () -> SelectionSort.selectionSort(original));
+    Assert.assertThrows(Exception.class, () -> Quicksort.quickSort(original));
+    Assert.assertThrows(Exception.class, () -> InsertionSort.insertionSort(original));
+
+    Integer[] mergeArray = new Integer[]{6, 3, 5, 1, 3, 5, null};
+    Assert.assertThrows(Exception.class, () -> MergeSort.mergeSort(mergeArray));
+  }
 }
