@@ -43,16 +43,9 @@ public final class TestUtils {
 
       @Override
       public <T extends Comparable<T>> void sort(T[] t) {
-
+        InsertionSort.insertionSort(t);
       }
     };
-
-//    SorterWrapper merge = new SorterWrapper() {
-//      @Override
-//      public <T extends Comparable<T>> void sort(T[] t) {
-//        MergeSort.mergeSort(t);
-//      }
-//    };
 
     SorterWrapper selection = new SorterWrapper() {
       @Override
