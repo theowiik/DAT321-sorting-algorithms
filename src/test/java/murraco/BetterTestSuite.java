@@ -51,6 +51,36 @@ public final class BetterTestSuite {
   }
 
   @Test
+  public void shouldSortArrayWithDuplicates() {
+    String[] original = {"C", "X", "B", "E", "A", "K", "A"};
+    String[] sorted = {"A", "A", "B", "C", "E", "K", "X"};
+
+    String[] bubbleArray = original.clone();
+    BubbleSort.bubbleSort(bubbleArray);
+    assertEquals(sorted, bubbleArray);
+
+    String[] heapArray = original.clone();
+    Heapsort.heapSort(heapArray);
+    assertEquals(sorted, heapArray);
+
+    String[] selectionArray = original.clone();
+    SelectionSort.selectionSort(selectionArray);
+    assertEquals(sorted, selectionArray);
+
+    String[] quickArray = original.clone();
+    Quicksort.quickSort(quickArray);
+    assertEquals(sorted, quickArray);
+
+    String[] insertionArray = original.clone();
+    InsertionSort.insertionSort(insertionArray);
+    assertEquals(sorted, insertionArray);
+
+    Integer[] mergeArray = new Integer[]{6, 3, 5, 1, 3, 5};
+    MergeSort.mergeSort(mergeArray);
+    assertEquals(new Integer[]{1, 3, 3, 5, 5, 6}, mergeArray);
+  }
+
+  @Test
   public void shouldThrowNullArray() {
     Assert.assertThrows(Exception.class, () -> BubbleSort.bubbleSort(null));
     Assert.assertThrows(Exception.class, () -> Heapsort.heapSort(null));
