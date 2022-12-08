@@ -196,8 +196,8 @@ public final class BetterTestSuite {
 
   @Test
   public void shouldSortArrayWithDuplicates() {
-    String[] original = {"C", "X", "B", "E", "A", "K", "A"};
-    String[] sorted = {"A", "A", "B", "C", "E", "K", "X"};
+    String[] original = {"C", "X", "X", "B", "E", "A", "K", "A"};
+    String[] sorted = {"A", "A", "B", "C", "E", "K", "X", "X"};
 
     String[] bubbleArray = original.clone();
     BubbleSort.bubbleSort(bubbleArray);
