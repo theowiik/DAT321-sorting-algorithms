@@ -3,16 +3,12 @@ package murraco;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 
 public final class BetterTestSuite {
 
   @Test
-  public void shouldThrowNullArray() {
+  public void shouldThrowIfArrayIsNull() {
     Assert.assertThrows(Exception.class, () -> BubbleSort.bubbleSort(null));
     Assert.assertThrows(Exception.class, () -> Heapsort.heapSort(null));
     Assert.assertThrows(Exception.class, () -> MergeSort.mergeSort(null));
@@ -51,7 +47,7 @@ public final class BetterTestSuite {
   }
 
   @Test
-  public void shouldSortArrayOneElement() {
+  public void shouldSortArrayWithOneElement() {
     String[] original = {"A"};
 
     String[] bubbleArray = original.clone();
@@ -241,15 +237,20 @@ public final class BetterTestSuite {
     Assert.assertThrows(Exception.class, () -> MergeSort.mergeSort(mergeArray));
   }
 
-  @Test
-  public void shouldSortLongArrayInTime() {
-    int size = 100_000;
-    Integer[] original = new Integer[size];
-    for (int i = 0; i < size; i++) {
-      original[i] = (int) (Math.random() * 1_000_000);
-    }
+//  @Test
+//  public void shouldSortLongArrayInTime() {
+//    int size = 100_000;
+//    Integer[] original = new Integer[size];
+//    for (int i = 0; i < size; i++) {
+//      original[i] = (int) (Math.random() * 1_000_000);
+//    }
+//
+//    List<Integer> sorted = new ArrayList<>(Arrays.asList(original));
+//    sorted.sort(Integer::compareTo);
+//  }
 
-    List<Integer> sorted = new ArrayList<>(Arrays.asList(original));
-    sorted.sort(Integer::compareTo);
+  @Test
+  public void shouldSortCustomClass() {
+
   }
 }

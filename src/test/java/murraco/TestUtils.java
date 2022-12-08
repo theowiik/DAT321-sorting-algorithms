@@ -1,5 +1,7 @@
 package murraco;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 public final class TestUtils {
@@ -75,4 +77,30 @@ public final class TestUtils {
     return Arrays.asList(wrappers);
   }
 
+  public final class CustomClass implements Comparable<CustomClass> {
+    private String hashMe;
+
+    public CustomClass(String hashMe) {
+      this.hashMe = hashMe;
+    }
+
+    @Override
+    public int compareTo(CustomClass custom) {
+      return hash(this.hashMe).compareTo(hash(custom.hashMe));
+    }
+
+    /**
+     * Hash a string
+     */
+    private String hash(String input) {
+      try {
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        md.update(input.getBytes());
+        byte[] digest = md.digest();
+        return String.format("%064x", new java.math.BigInteger(1, digest));
+      } catch (NoSuchAlgorithmException e) {
+        throw new RuntimeException(e);
+      }
+    }
+  }
 }
