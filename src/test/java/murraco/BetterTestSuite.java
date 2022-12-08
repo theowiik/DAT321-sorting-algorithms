@@ -3,6 +3,9 @@ package murraco;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 
 public final class BetterTestSuite {
@@ -251,6 +254,20 @@ public final class BetterTestSuite {
 
   @Test
   public void shouldSortCustomClass() {
+    // SHA256 is b5d4045c3f466fa91fe2cc6abe79232a1a57cdf104f7a26e716e0a1e2789df78
+    TestUtils.CustomClass class1 = new TestUtils.CustomClass("ABC");
 
+    // SHA256 is 54d626e08c1c802b305dad30b7e54a82f102390cc92c7d4db112048935236e9c
+    TestUtils.CustomClass class2 = new TestUtils.CustomClass(":)");
+
+    // SHA256 is 3041c8745f9678c2642b3b9b425b8a408262b9d8c5b93139942de3b1adb43b1c
+    TestUtils.CustomClass class3 = new TestUtils.CustomClass("\uD83D\uDE0E");
+
+    TestUtils.CustomClass[] original = { class1, class2, class3 };
+    TestUtils.CustomClass[] ordered = { class3, class2, class1 };
+
+    BubbleSort.bubbleSort(original);
+
+    assertEquals(ordered, original);
   }
 }

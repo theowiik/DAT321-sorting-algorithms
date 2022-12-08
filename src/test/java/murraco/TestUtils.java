@@ -77,22 +77,22 @@ public final class TestUtils {
     return Arrays.asList(wrappers);
   }
 
-  public final class CustomClass implements Comparable<CustomClass> {
-    private String hashMe;
+  public static final class CustomClass implements Comparable<CustomClass> {
+    private String toBeHashed;
 
     public CustomClass(String hashMe) {
-      this.hashMe = hashMe;
+      this.toBeHashed = hashMe;
     }
 
     @Override
     public int compareTo(CustomClass custom) {
-      return hash(this.hashMe).compareTo(hash(custom.hashMe));
+      return hash(this.toBeHashed).compareTo(hash(custom.toBeHashed));
     }
 
     /**
      * Hash a string
      */
-    private String hash(String input) {
+    public static String hash(String input) {
       try {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
         md.update(input.getBytes());
