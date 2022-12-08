@@ -3,21 +3,18 @@ package murraco;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 
 public final class BetterTestSuite {
 
   @Test
-  public void shouldThrowIfArrayIsNull() {
-    Assert.assertThrows(Exception.class, () -> BubbleSort.bubbleSort(null));
-    Assert.assertThrows(Exception.class, () -> Heapsort.heapSort(null));
-    Assert.assertThrows(Exception.class, () -> MergeSort.mergeSort(null));
-    Assert.assertThrows(Exception.class, () -> SelectionSort.selectionSort(null));
-    Assert.assertThrows(Exception.class, () -> Quicksort.quickSort(null));
-    Assert.assertThrows(Exception.class, () -> InsertionSort.insertionSort(null));
+  public void shouldThrowIllegalArgumentIfArrayIsNull() {
+    Assert.assertThrows(IllegalArgumentException.class, () -> BubbleSort.bubbleSort(null));
+    Assert.assertThrows(IllegalArgumentException.class, () -> Heapsort.heapSort(null));
+    Assert.assertThrows(IllegalArgumentException.class, () -> MergeSort.mergeSort(null));
+    Assert.assertThrows(IllegalArgumentException.class, () -> SelectionSort.selectionSort(null));
+    Assert.assertThrows(IllegalArgumentException.class, () -> Quicksort.quickSort(null));
+    Assert.assertThrows(IllegalArgumentException.class, () -> InsertionSort.insertionSort(null));
   }
 
   @Test
@@ -228,29 +225,17 @@ public final class BetterTestSuite {
   }
 
   @Test
-  public void shouldThrowArrayContainsNull() {
+  public void shouldThrowIllegalArgumentIfArrayContainsNull() {
     String[] original = {"C", "X", "B", "E", "A", "K", null};
-    Assert.assertThrows(Exception.class, () -> BubbleSort.bubbleSort(original));
-    Assert.assertThrows(Exception.class, () -> Heapsort.heapSort(original));
-    Assert.assertThrows(Exception.class, () -> SelectionSort.selectionSort(original));
-    Assert.assertThrows(Exception.class, () -> Quicksort.quickSort(original));
-    Assert.assertThrows(Exception.class, () -> InsertionSort.insertionSort(original));
+    Assert.assertThrows(IllegalArgumentException.class, () -> BubbleSort.bubbleSort(original));
+    Assert.assertThrows(IllegalArgumentException.class, () -> Heapsort.heapSort(original));
+    Assert.assertThrows(IllegalArgumentException.class, () -> SelectionSort.selectionSort(original));
+    Assert.assertThrows(IllegalArgumentException.class, () -> Quicksort.quickSort(original));
+    Assert.assertThrows(IllegalArgumentException.class, () -> InsertionSort.insertionSort(original));
 
     Integer[] mergeArray = new Integer[]{6, 3, 5, 1, 3, 5, null};
-    Assert.assertThrows(Exception.class, () -> MergeSort.mergeSort(mergeArray));
+    Assert.assertThrows(IllegalArgumentException.class, () -> MergeSort.mergeSort(mergeArray));
   }
-
-//  @Test
-//  public void shouldSortLongArrayInTime() {
-//    int size = 100_000;
-//    Integer[] original = new Integer[size];
-//    for (int i = 0; i < size; i++) {
-//      original[i] = (int) (Math.random() * 1_000_000);
-//    }
-//
-//    List<Integer> sorted = new ArrayList<>(Arrays.asList(original));
-//    sorted.sort(Integer::compareTo);
-//  }
 
   @Test
   public void shouldSortCustomClass() {
@@ -263,8 +248,8 @@ public final class BetterTestSuite {
     // SHA256 is 3041c8745f9678c2642b3b9b425b8a408262b9d8c5b93139942de3b1adb43b1c
     TestUtils.CustomClass class3 = new TestUtils.CustomClass("\uD83D\uDE0E");
 
-    TestUtils.CustomClass[] original = { class1, class2, class3 };
-    TestUtils.CustomClass[] ordered = { class3, class2, class1 };
+    TestUtils.CustomClass[] original = {class1, class2, class3};
+    TestUtils.CustomClass[] ordered = {class3, class2, class1};
 
     BubbleSort.bubbleSort(original);
 
