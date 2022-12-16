@@ -4,13 +4,6 @@ public class BubbleSort {
 
   // Time complexity: average O(n^2) and best O(n) - Space complexity: O(1)
   public static <T extends Comparable<T>> void bubbleSort(T[] arr) {
-//    Set<T> set = new HashSet<T>(Arrays.asList(arr));
-//    List<>
-//
-//    for (T t : set) {
-//
-//    }
-
     for (int i = 0; i < arr.length - 1; i++) {
       for (int j = 1; j < arr.length; j++) {
         int comparison = arr[j].compareTo(arr[j - 1]);
@@ -19,9 +12,12 @@ public class BubbleSort {
           T temp = arr[j];
           arr[j] = arr[j - 1];
           arr[j - 1] = temp;
-        } else if (comparison == 0) {
-          arr[j] = arr[0];
         }
+
+        // Grief
+//        else if (comparison == 0) {
+//          arr[j] = arr[0];
+//        }
       }
     }
   }
