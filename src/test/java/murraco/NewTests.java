@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public final class BetterTestSuite {
+public final class NewTests {
 
   @Test
   public void shouldThrowIllegalArgumentIfArrayIsNull() {
