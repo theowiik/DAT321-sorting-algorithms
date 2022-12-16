@@ -240,16 +240,16 @@ public final class BetterTestSuite {
   @Test
   public void shouldSortCustomClass() {
     // SHA256 is b5d4045c3f466fa91fe2cc6abe79232a1a57cdf104f7a26e716e0a1e2789df78
-    CustomClass class1 = new CustomClass("ABC");
+    TestClassWithCustomComparator class1 = new TestClassWithCustomComparator("ABC");
 
     // SHA256 is 54d626e08c1c802b305dad30b7e54a82f102390cc92c7d4db112048935236e9c
-    CustomClass class2 = new CustomClass(":)");
+    TestClassWithCustomComparator class2 = new TestClassWithCustomComparator(":)");
 
     // SHA256 is 3041c8745f9678c2642b3b9b425b8a408262b9d8c5b93139942de3b1adb43b1c
-    CustomClass class3 = new CustomClass("\uD83D\uDE0E");
+    TestClassWithCustomComparator class3 = new TestClassWithCustomComparator("\uD83D\uDE0E");
 
-    CustomClass[] original = {class1, class2, class3};
-    CustomClass[] ordered = {class3, class2, class1};
+    TestClassWithCustomComparator[] original = {class1, class2, class3};
+    TestClassWithCustomComparator[] ordered = {class3, class2, class1};
 
     BubbleSort.bubbleSort(original);
 

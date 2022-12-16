@@ -3,15 +3,15 @@ package murraco;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public final class CustomClass implements Comparable<CustomClass> {
+public final class TestClassWithCustomComparator implements Comparable<TestClassWithCustomComparator> {
   private String toBeHashed;
 
-  public CustomClass(String hashMe) {
+  public TestClassWithCustomComparator(String hashMe) {
     this.toBeHashed = hashMe;
   }
 
   @Override
-  public int compareTo(CustomClass custom) {
+  public int compareTo(TestClassWithCustomComparator custom) {
     return hash(this.toBeHashed).compareTo(hash(custom.toBeHashed));
   }
 
